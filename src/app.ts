@@ -1,5 +1,4 @@
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
-import { BusinessCardsHandler } from './BusinessCard/BusinessCardsHandler';
 import { UserSyncFix } from './sync-fix';
 import { ExportToCsv } from 'export-to-csv';
 export default class App {
@@ -11,18 +10,13 @@ export default class App {
 	private refreshTime = 5000;
 	private syncFix = new UserSyncFix(this.refreshTime);
 
-	private _BusinessCardHandler: BusinessCardsHandler;
 	private _assets: MRE.AssetContainer;
 
 	public get assetContainer() { return this._assets; }
 	public get context() { return this._context; }
-	public get BusinessCardHandler() { return this._BusinessCardHandler; }
 	
 	constructor(private _context: MRE.Context) {
 		this._assets = new MRE.AssetContainer(_context);
-
-		//outside classes
-		this._BusinessCardHandler = new BusinessCardsHandler(this);
 
 		this._context.onStarted(() => this.started());
 		this._context.onUserJoined(user => this.userJoined(user));
@@ -99,8 +93,6 @@ export default class App {
 		const csvExporter = new ExportToCsv(options);
 		const csvData = csvExporter.generateCsv(obj, true);
 		require('fs').appendFileSync('world_data.csv', csvData)
-
-		this.BusinessCardHandler.startup(user);
 	}
 	
 	/**
@@ -133,15 +125,12 @@ export default class App {
 		const csvExporter = new ExportToCsv(options);
 		const csvData = csvExporter.generateCsv(obj, true);
 		require('fs').appendFileSync('world_data.csv', csvData)
-
-		this.BusinessCardHandler.cleanup(user);
 	}
 
 	/**
 	 * Runs all syncfix functions to make sure actors display properly.
 	 */
 	private syncFixRun() {
-		this.BusinessCardHandler.syncFix();
 		console.log("Sync Fix ran successfully");
 	}
 }
