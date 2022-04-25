@@ -1,6 +1,6 @@
 ## Setup
 
-* Open a command prompt to this sample's folder and run `npm install`. Keep the command prompt open if you wish to follow the command-oriented instructions that follow.
+* Open a command prompt to this sample's folder and run `npm install` and `npm install --save export-to-csv`. Keep the command prompt open if you wish to follow the command-oriented instructions that follow.
 * Open the root folder of this repo in VSCode if you wish to follow the VSCode-oriented instructions.
 
 ## Build
