@@ -44,6 +44,6 @@
     "concurrently": "^5.1.0",
     "dotenv": "^6.2.0",
     "export-to-csv": "^0.2.1",
-    "nodemailer": "^6.7.3"
+    "nodemailer": "^6.9.9"
   }
 }
